@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      alert('音が鳴るよ');
+      const music = new Audio('vinculum.mp3');
+
+      var text = 'ご期待に添いかねる残念';
+      if (/期待|晴れ/.test(text)) {
+        music.play();
+      } else {
+        alert('どんまい！');
+      }
+    </script>
+  </body>
+</html>
