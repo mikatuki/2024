@@ -18,6 +18,8 @@
     <div>変換後テキスト↓</div>
     <div class="btn" id="copy">全文コピー</div>
     <div id="transformed_text"></div>
+    <div id="flash_message">コピー完了</div>
+    <!-- Flash message div -->
 
     <script>
       document.querySelector('#change').addEventListener('click', function () {
@@ -53,6 +55,13 @@
           .writeText(transformedText)
           .then(function () {
             console.log('Text copied to clipboard');
+            // Show flash message
+            const flashMessage = document.getElementById('flash_message');
+            flashMessage.style.display = 'block';
+            // Hide flash message after 2 seconds
+            setTimeout(function () {
+              flashMessage.style.display = 'none';
+            }, 2000);
           })
           .catch(function (err) {
             console.error('Could not copy text: ', err);
