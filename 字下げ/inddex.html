@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>字下げ</title>
+  </head>
+  <body>
+    <h1>字下げしよ</h1>
+    <textarea
+      name=""
+      id="main_text"
+      rows="10"
+      placeholder="字下げしたい文章を入れてね"
+    ></textarea>
+    <div class="btn" id="change">変換</div>
+    <div>変換後テキスト↓</div>
+    <div class="btn" id="copy">全文コピー</div>
+    <div id="transformed_text"></div>
+
+    <script>
+      document.querySelector('#change').addEventListener('click', function () {
+        let textAreaContent = document.getElementById('main_text').value;
+
+        // Split the content into lines
+        let lines = textAreaContent.split('\n');
+
+        // Add a space at the beginning of each line that contains a newline
+        lines = lines.map((line) => {
+          if (line.trim() === '' || line.startsWith('「')) {
+            return line;
+          } else {
+            return '　' + line;
+          }
+        });
+
+        // Join the lines back into a single string
+        textAreaContent = lines.join('\n');
+
+        // Display the modified content in the new div
+        document.getElementById('transformed_text').innerText = textAreaContent;
+
+        console.log(textAreaContent);
+      });
+
+      document.querySelector('#copy').addEventListener('click', function () {
+        const transformedText =
+          document.getElementById('transformed_text').innerText;
+
+        // Copy the transformed text to the clipboard
+        navigator.clipboard
+          .writeText(transformedText)
+          .then(function () {
+            console.log('Text copied to clipboard');
+          })
+          .catch(function (err) {
+            console.error('Could not copy text: ', err);
+          });
+      });
+    </script>
+  </body>
+</html>
