@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1>字下げしよ</h1>
+    <div id="text_cnt">文字数: 0</div>
     <textarea
       name=""
       id="main_text"
@@ -22,6 +23,18 @@
     <!-- Flash message div -->
 
     <script>
+      // Function to update the character count
+      function updateCharacterCount() {
+        const textAreaContent = document.getElementById('main_text').value;
+        const charCount = textAreaContent.length;
+        document.getElementById('text_cnt').innerText = `文字数: ${charCount}`;
+      }
+
+      // Event listener for input changes in the textarea
+      document
+        .getElementById('main_text')
+        .addEventListener('input', updateCharacterCount);
+
       document.querySelector('#change').addEventListener('click', function () {
         let textAreaContent = document.getElementById('main_text').value;
 
@@ -67,6 +80,9 @@
             console.error('Could not copy text: ', err);
           });
       });
+
+      // Initialize character count on page load
+      updateCharacterCount();
     </script>
   </body>
 </html>
